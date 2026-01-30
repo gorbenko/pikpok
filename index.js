@@ -69,7 +69,7 @@ const onClickSplash = () => {
 
 const main = () => {
     initObserver();
-    onClickSplash();
+    // onClickSplash();
 }
 
 document.addEventListener('DOMContentLoaded', main, false)
