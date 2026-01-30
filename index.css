@@ -1,0 +1,33 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.splash {
+    width: inherit;
+    height: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    cursor: pointer;
+}
+
+.splash::before {
+    content: '▷';
+    font-size: 72px;
+    color: #fff;
+}
+
+.player {
+    position: relative;
+    overflow: auto;
+    width: 250px;
+    height: 444px;
+    cursor: pointer;
+}
+
+.video-item {
+    width: inherit;
+    height: inherit;
+}
