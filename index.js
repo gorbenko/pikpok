@@ -46,7 +46,7 @@ const initObserver = () => {
                     if (currentIdx + 1 === getVideosLength()) {
                         addVideoItem(observer);
                     }
-                } else {
+                } else if (!entry.target.paused && !entry.target.ended) {
                     entry.target.pause();
                 }
             })
