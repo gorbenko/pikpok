@@ -1,7 +1,13 @@
+html {
+    height: 100%;
+}
+
 body {
     margin: 0;
     padding: 0;
     background: #ccc;
+    height: 100%;
+    font-family: sans-serif;
 }
 
 .header {
@@ -11,7 +17,6 @@ body {
     font-size: 20px;
     background: #4e4e4e;
     color: #fff;
-    font-family: sans-serif;
     position: sticky;
     top: 0;
     z-index: 1;
@@ -38,20 +43,30 @@ body {
     margin: auto;
     position: relative;
     overflow: auto;
-    width: 250px;
-    height: 444px;
+    width: 370px;
+    height: 100%;
     cursor: pointer;
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
 }
 
 .video-item {
-    width: inherit;
     height: inherit;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
 }
 
 /* mobile phone */
 @media all and (max-width: 768px) {
     .player {
         width: 100%;
-        height: auto;
+        height: 100%;
     }
+}
+
+.video-name {
+    font-size: 16px;
+    color: #000;
+    text-shadow: 2px 2px 2px #fff;
+    margin: 0;
 }

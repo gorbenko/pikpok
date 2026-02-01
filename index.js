@@ -27,7 +27,7 @@ const addVideoItem = observer => {
     if (!src) return;
 
     const video = document.createElement('video');
-    video.src = urls[idx];
+    video.src = src;
     video.controls = true;
     video.classList.add('video-item');
     video.setAttribute('data-idx', idx);
@@ -43,6 +43,9 @@ const initObserver = () => {
                 if (entry.isIntersecting) {
                     entry.target.play();
                     const currentIdx = Number(entry.target.getAttribute('data-idx'));
+                    
+                    $('.video-name').innerHTML = urls[currentIdx];
+                    
                     if (currentIdx + 1 === getVideosLength()) {
                         addVideoItem(observer);
                     }
