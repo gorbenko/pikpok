@@ -1,11 +1,16 @@
+:root {
+    --pikpok-light: #fff;
+    --pikpok-gray: #ccc;
+}
+
 html {
-    height: 100%;
+    height: calc(100% - 40px);
 }
 
 body {
     margin: 0;
     padding: 0;
-    background: #ccc;
+    background: var(--pikpok-gray);
     height: 100%;
     font-family: sans-serif;
 }
@@ -16,27 +21,18 @@ body {
     line-height: 40px;
     font-size: 20px;
     background: #4e4e4e;
-    color: #fff;
+    color: var(--pikpok-light);
     position: sticky;
     top: 0;
     z-index: 1;
-    box-shadow: 2px 2px 4px #ccc;
+    box-shadow: 2px 2px 4px var(--pikpok-gray);
 }
 
-.splash {
-    width: inherit;
-    height: inherit;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    cursor: pointer;
-}
-
-.splash::before {
-    content: '▷';
-    font-size: 72px;
-    color: #fff;
+.video-name {
+    font-size: 16px;
+    color: #000;
+    text-shadow: 2px 2px 2px var(--pikpok-light);
+    margin: 0;
 }
 
 .player {
@@ -54,19 +50,13 @@ body {
     height: inherit;
     scroll-snap-align: start;
     scroll-snap-stop: always;
+    width: 100%;
+    object-fit: cover;
 }
 
-/* mobile phone */
 @media all and (max-width: 768px) {
     .player {
         width: 100%;
         height: 100%;
     }
-}
-
-.video-name {
-    font-size: 16px;
-    color: #000;
-    text-shadow: 2px 2px 2px #fff;
-    margin: 0;
 }

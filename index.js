@@ -16,9 +16,13 @@ const urls = [
     "videos/7870372071727092435.MP4",
 ];
 
+const VIDEO_ITEM_CLS = '.video-item';
+const VIDEO_NAME_CLS = '.video-name';
+const PLAYER_CLS = '.player';
+
 const $ = selector => document.querySelector(selector);
 const $$ = selector => document.querySelectorAll(selector);
-const getVideosLength = () => $$('.video-item').length;
+const getVideosLength = () => $$(VIDEO_ITEM_CLS).length;
 
 const addVideoItem = observer => {
     const idx = getVideosLength();
@@ -29,26 +33,25 @@ const addVideoItem = observer => {
     const video = document.createElement('video');
     video.src = src;
     video.controls = true;
-    video.classList.add('video-item');
+    video.classList.add(VIDEO_ITEM_CLS.substring(1));
     video.setAttribute('data-idx', idx);
-    $('.player').appendChild(video);
-    const item = $(`.video-item[data-idx="${idx}"]`);
-    observer.observe(item);
+    $(PLAYER_CLS).appendChild(video);
+    observer.observe(video);
 }
 
-const initObserver = () => {
+const main = () => {
     if (window.IntersectionObserver) {
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.play();
                     const currentIdx = Number(entry.target.getAttribute('data-idx'));
-                    
-                    $('.video-name').innerHTML = urls[currentIdx];
-                    
+
                     if (currentIdx + 1 === getVideosLength()) {
                         addVideoItem(observer);
                     }
+
+                    $(VIDEO_NAME_CLS).innerHTML = urls[currentIdx];
                 } else if (!entry.target.paused && !entry.target.ended) {
                     entry.target.pause();
                 }
@@ -57,36 +60,8 @@ const initObserver = () => {
             threshold: 0.5,
         });
 
-        $$('video').forEach(video => observer.observe(video));
+        $$(VIDEO_ITEM_CLS).forEach(video => observer.observe(video));
     }
-}
-
-const onClickSplash = () => {
-    const removeSplash = () => {
-        $('.splash').remove();
-        $('.player').removeEventListener('click', removeSplash);
-    }
-
-    $('.player').addEventListener('click', removeSplash);
-}
-
-const main = () => {
-    initObserver();
-    // onClickSplash();
 }
 
 document.addEventListener('DOMContentLoaded', main, false)
-
-// $('.app').addEventListener('scroll', onScroll, false);
-
-
-
-// if(!!window.IntersectionObserver){
-
-// document.addEventListener('DOMContentLoaded', fn, false) // false ?
-// }
-
-// ready(() => {
-
-
-// video.addEventListener('ended', function() {
